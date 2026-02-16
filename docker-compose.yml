@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: hackathon-postgres
+    environment:
+      POSTGRES_USER: hackathon
+      POSTGRES_PASSWORD: hackathon_password
+      POSTGRES_DB: hackathon_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - hackathon-network
+
+  backend:
+    build: ./backend
+    container_name: hackathon-backend
+    environment:
+      DATABASE_URL: postgresql://hackathon:hackathon_password@postgres:5432/hackathon_db
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production
+      JWT_REFRESH_SECRET: your-super-secret-refresh-key-change-in-production
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend/uploads:/app/uploads
+    networks:
+      - hackathon-network
+    command: sh -c "npx prisma migrate deploy && npx prisma db seed && npm start"
+
+volumes:
+  postgres_data:
+
+networks:
+  hackathon-network:
+    driver: bridge
