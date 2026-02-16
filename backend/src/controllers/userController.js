@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { asyncWrapper } from '../utils/asyncWrapper.js';
 import { NotFoundError, ForbiddenError } from '../utils/errors.js';
 import db from '../config/database.js';

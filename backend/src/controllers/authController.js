@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { asyncWrapper } from '../utils/asyncWrapper.js';
 import { UnauthorizedError, ConflictError } from '../utils/errors.js';
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt.js';
