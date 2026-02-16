@@ -9,8 +9,6 @@ build/
 # Backend
 backend/uploads/*
 !backend/uploads/.gitkeep
-backend/prisma/dev.db
-backend/prisma/dev.db-journal
 backend/data/db.json
 
 # Frontend

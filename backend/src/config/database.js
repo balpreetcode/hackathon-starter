@@ -31,7 +31,7 @@ function save(data) {
   fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 }
 
-// Simple query helpers that mimic Prisma-like patterns
+// JSON file database with query helpers
 const db = {
   _data: load(),
 

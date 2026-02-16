@@ -75,7 +75,7 @@ cd backend && npm install && cd ..
 cd frontend && npm install && cd ..
 
 # Seed the database with sample data
-cd backend && node prisma/seed.js && cd ..
+cd backend && node seed.js && cd ..
 
 # Start both servers
 npm run dev
@@ -99,8 +99,7 @@ The app will be available at:
 hackathon-starter/
 ├── backend/
 │   ├── data/                  # JSON file database (auto-created)
-│   ├── prisma/
-│   │   └── seed.js            # Database seeder
+│   ├── seed.js                # Database seeder
 │   ├── src/
 │   │   ├── config/
 │   │   │   ├── database.js    # JSON DB engine
@@ -181,7 +180,7 @@ hackathon-starter/
 - **Add API routes**: Create in `backend/src/routes/`, register in `server.js`
 - **Add pages**: Create in `frontend/src/pages/`, add route in `App.jsx`, add to sidebar in `Layout.jsx`
 - **Change theme**: Edit `frontend/tailwind.config.js` (primary color palette)
-- **Switch to PostgreSQL**: Update `database.js` to use Prisma/pg, add connection string to `.env`
+- **Switch to PostgreSQL**: Replace JSON DB in `database.js` with a pg/knex/prisma client
 
 ## 🐳 Docker
 

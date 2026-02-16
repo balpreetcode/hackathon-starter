@@ -4,10 +4,6 @@ echo "🚀 Hackathon Starter Setup"
 echo "=========================="
 echo ""
 
-# Install root dependencies
-echo "📦 Installing root dependencies..."
-npm install
-
 # Install backend dependencies
 echo "📦 Installing backend dependencies..."
 cd backend
@@ -19,11 +15,9 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Initialize database
-echo "🗄️  Initializing database..."
-npx prisma generate
-npx prisma migrate dev --name init
-npx prisma db seed
+# Seed database
+echo "🌱 Seeding database..."
+node seed.js
 
 cd ..
 
@@ -44,9 +38,6 @@ echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "To start the development servers:"
-echo "  npm run dev"
-echo ""
-echo "Or start them separately:"
 echo "  Backend:  cd backend && npm run dev"
 echo "  Frontend: cd frontend && npm run dev"
 echo ""

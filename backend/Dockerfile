@@ -3,13 +3,10 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY package*.json ./
-COPY prisma ./prisma/
-
-RUN npm install
-RUN npx prisma generate
+RUN npm install --production
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 6300
 
-CMD ["npm", "start"]
+CMD ["node", "src/server.js"]
