@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import { asyncWrapper } from '../utils/asyncWrapper.js';
 import { UnauthorizedError, ConflictError } from '../utils/errors.js';
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt.js';
@@ -12,11 +11,9 @@ export const register = asyncWrapper(async (req, res) => {
     throw new ConflictError('Email already registered');
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
-
   const user = db.users.create({
     email,
-    password: hashedPassword,
+    password,
     name,
     role: 'USER',
   });
@@ -51,8 +48,7 @@ export const login = asyncWrapper(async (req, res) => {
     throw new UnauthorizedError('Invalid credentials');
   }
 
-  const isPasswordValid = await bcrypt.compare(password, user.password);
-  if (!isPasswordValid) {
+  if (password !== user.password) {
     throw new UnauthorizedError('Invalid credentials');
   }
 

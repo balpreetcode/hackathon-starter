@@ -1,7 +1,6 @@
-import bcrypt from 'bcryptjs';
 import db from './src/config/database.js';
 
-async function main() {
+function main() {
   console.log('Seeding database...');
 
   // Clear existing data
@@ -12,21 +11,21 @@ async function main() {
   // Create users
   const admin = db.users.create({
     email: 'admin@example.com',
-    password: await bcrypt.hash('admin123', 10),
+    password: 'admin123',
     name: 'Admin User',
     role: 'ADMIN',
   });
 
   const manager = db.users.create({
     email: 'manager@example.com',
-    password: await bcrypt.hash('manager123', 10),
+    password: 'manager123',
     name: 'Manager User',
     role: 'MANAGER',
   });
 
   const user = db.users.create({
     email: 'user@example.com',
-    password: await bcrypt.hash('user123', 10),
+    password: 'user123',
     name: 'Regular User',
     role: 'USER',
   });
